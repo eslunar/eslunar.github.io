@@ -4,7 +4,7 @@ Two files are required to start, your entry `.html` file and your lua code, sepe
 
 source:```esluna.github.io/eslunar.stable```
 
-```
+```html
 <html>
   <script src=//eslunar.github.io/eslunar.stable >
   {

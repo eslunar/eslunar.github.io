@@ -27,7 +27,7 @@ Add esLunar to your `index.html`, then add a json object that references to your
 
 source:```eslunar.github.io/eslunar.stable```
 
-```
+```html
 <html>
   <script src=//eslunar.github.io/eslunar.stable >
   {
@@ -39,7 +39,7 @@ source:```eslunar.github.io/eslunar.stable```
 
 Add your lua code to `index.lua`:
 
-```
+```lua
 print("hi eslunar!")
 ```
 

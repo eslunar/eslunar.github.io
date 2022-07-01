@@ -26,7 +26,7 @@ example :  `el.attr("disabled",true).css("color","gray")`
 ---
 ### Document methods
 Method | type | Usage
-- | - | -
+--- | --- | ---
 body | element | bound to the document body.
 clone | function(element) | clones an element.
 create | function(string or element) | Creates a new element from an html string provided, or creates a reference if an element is provided.
@@ -35,7 +35,7 @@ head | element | bound to the document head.
 ---
 ### Element methods
 Method | Usage
-- | -
+--- | ---
 add | adds an element to the referer, accepts infinite parameters.
 attr | Sets or gets referers attributes, learn [more](./attrncss.md).
 css | Sets or gets referers style, learn [more](./attrncss.md).

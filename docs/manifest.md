@@ -16,11 +16,11 @@ All values in the manifest are optional, including the `main` method which defau
 ---
 ### Manifest methods
 Method | type | Default | Description
-- | - | - | -
+--- | --- | --- | ---
 icon | url  | "/favicon.ico" | Sets the apps favicon and the web manifest install icon.
 main | url  | "/index.lua" | Sets the entry script to be run when the app is ready.
 splash | html | loading animation | sets the first contentful paint before the app is ready.
-title | string | "esLuna app" | sets app title and web manifest  `name` and `short_name` methods.
+title | string | "esLunar app" | sets app title and web manifest  `name` and `short_name` methods.
 
 ---
 **[continue to document](./document.md)**
