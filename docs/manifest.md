@@ -1,9 +1,9 @@
-esLuna - manifest
+esLunar - manifest
 ---
 The manifest is the json object passed to your script tag, it defines your app, its entry point, splash screen and more. The web manifest is also generated from this.
 
 ```html
-<script src=//esluna.github.io/esluna.stable >
+<script src=//eslunar.github.io/eslunar.stable >
 {
   "main":"index.lua",
   "title":"demo app",

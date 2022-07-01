@@ -1,4 +1,4 @@
-esLuna - modules
+esLunar - modules
 ---
 Modules are imported using the `require` function, and exported using the `return` statement. After a module is imported, its source is cached to sessionStorage.
 
@@ -17,8 +17,8 @@ Then refer to your module in your main script, note if module name does not have
 ```lua
 local greet = require("module.lua")
 -- alt: local greet = require "module"
-greet("esluna")
--- prints "hello esluna!"
+greet("eslunar")
+-- prints "hello eslunar!"
 ```
 
 

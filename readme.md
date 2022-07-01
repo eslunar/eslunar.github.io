@@ -1,4 +1,4 @@
-esLuna v1.0
+esLunar v1.0
 ---
 #### The perfect lua environment for the web.
 
@@ -7,7 +7,7 @@ esLuna v1.0
 
 ### Introduction
 
-Built with simplicity in mind, esluna uses [lua 5.3]() syntax and [javascript]() apis to create amazing web apps, fast! no build steps or compilations required.
+Built with simplicity in mind, eslunar uses [lua 5.3]() syntax and [javascript]() apis to create amazing web apps, fast! no build steps or compilations required.
 
 Features:
 - Simple module import and exports
@@ -23,13 +23,13 @@ All this under `300kb`, **interested?**
 
 ---
 ### Usage
-Add esLuna to your `index.html`, then add a json object that references to your entry script.
+Add esLunar to your `index.html`, then add a json object that references to your entry script.
 
-source:```esluna.github.io/esluna.stable```
+source:```eslunar.github.io/eslunar.stable```
 
 ```
 <html>
-  <script src=//esluna.github.io/esluna.stable >
+  <script src=//eslunar.github.io/eslunar.stable >
   {
     "main":"index.lua"
   }
@@ -40,7 +40,7 @@ source:```esluna.github.io/esluna.stable```
 Add your lua code to `index.lua`:
 
 ```
-print("hi esluna!")
+print("hi eslunar!")
 ```
 
 ---
@@ -65,16 +65,16 @@ print("hi esluna!")
 Learn more [here](./docs/ref.md).
 
 ---
-### esLuna nightly
+### esLunar nightly
 All new tested and untested features are pushed to the nightly version before they are green flagged for the stable version to avoid breaking changes and bugs. Never use nightly in production, results could be disastrous to your app.
 
-source: `esluna.github.io/esluna.nightly`
+source: `eslunar.github.io/eslunar.nightly`
 
 
 ---
 ### Author
 Faizel Dealdrey Garoeb
 
-email - <dealdreygaroeb@gmail.com><br/>telegram - https://t.me/esLuna
+email - <dealdreygaroeb@gmail.com><br/>telegram - https://t.me/esLunar
 
 happy coding!

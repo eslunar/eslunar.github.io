@@ -1,4 +1,4 @@
-esLuna - document
+esLunar - document
 ---
 Use the document table to access the DOM, query elements or create new elements.The document table itself is an element with extra methods such as `head`, `body` and `create`.
 
@@ -11,7 +11,7 @@ document.body.html("<p> hi there 🤗 </p>")
 -- create an element
 local butt = document.create("<button>press me</button>")
 butt.attr("id","mEl")
-butt.on("click",function()alert("hello esluna!")end)
+butt.on("click",function()alert("hello eslunar!")end)
 document.body.add(butt)
 
 -- query an element
@@ -47,7 +47,7 @@ queryAll | Return  matching children of the referer, learn [more](./queries.md).
 remove | Removes referer from its parent, if a query object is passed, then it removes the matching children of the referer.
 text | Sets or gets referers inner text, learn [more](./textnhtml.md).
 
-You can also access javascript element methods currently unavailable to esLuna via the `element.raw` method, which is just direct access to the html element being manipulated.
+You can also access javascript element methods currently unavailable to esLunar via the `element.raw` method, which is just direct access to the html element being manipulated.
 
 ---
 **[continue to queries](./queries.md)**
