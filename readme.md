@@ -1,4 +1,4 @@
-esLunar v1.0
+  eslunar v1.0
 ---
 #### The perfect lua environment for the web.
 
@@ -7,29 +7,29 @@ esLunar v1.0
 
 ### Introduction
 
-Built with simplicity in mind, eslunar uses [lua 5.3]() syntax and [javascript]() apis to create amazing web apps, fast! no build steps or compilations required.
+Built with simplicity in mind, eslunar uses [lua](//lua.org) syntax and [javascript](//mdn.mozzilla.org) apis to create amazing web apps, fast! no build steps or compilations required.
 
 Features:
-- Simple module import and exports
+- simple module import and exports
 - supports all javascript libraries
-- supports most lua packages
+- supports basic lua packages
 - close interaction with the DOM
-- top level asynchronous code
+- asynchronous code via coroutines
 - plays nicely with other frameworks, e.g Jquery
-- API packed
+- API packed!
 
-All this under `300kb`, **interested?**
+All this under `250kb*`, **interested?**
 
 
 ---
 ### Usage
-Add esLunar to your `index.html`, then add a json object that references to your entry script.
+Add eslunar to your `index.html`, then add a json object that references to your entry script.
 
-source:```eslunar.github.io/eslunar.stable```
+source:```eslunar.github.io/eslunar```
 
 ```html
 <html>
-  <script src=//eslunar.github.io/eslunar.stable >
+  <script src=//eslunar.github.io/eslunar >
   {
     "main":"index.lua"
   }
@@ -40,7 +40,11 @@ source:```eslunar.github.io/eslunar.stable```
 Add your lua code to `index.lua`:
 
 ```lua
-print("hi eslunar!")
+function greet(name)
+  print("hello"..name)
+end
+
+greet("eslunar")
 ```
 
 ---
@@ -65,16 +69,9 @@ print("hi eslunar!")
 Learn more [here](./docs/ref.md).
 
 ---
-### esLunar nightly
-All new tested and untested features are pushed to the nightly version before they are green flagged for the stable version to avoid breaking changes and bugs. Never use nightly in production, results could be disastrous to your app.
-
-source: `eslunar.github.io/eslunar.nightly`
-
-
----
 ### Author
 Faizel Dealdrey Garoeb
 
-email - <dealdreygaroeb@gmail.com><br/>telegram - https://t.me/esLunar
+email - <dealdreygaroeb@gmail.com>
 
 happy coding!

@@ -1,4 +1,4 @@
-esLunar - document
+eslunar - document
 ---
 Use the document table to access the DOM, query elements or create new elements.The document table itself is an element with extra methods such as `head`, `body` and `create`.
 
@@ -10,18 +10,18 @@ document.body.html("<p> hi there 🤗 </p>")
 
 -- create an element
 local butt = document.create("<button>press me</button>")
-butt.attr("id","mEl")
+butt.attr("id","butt")
 butt.on("click",function()alert("hello eslunar!")end)
 document.body.add(butt)
 
 -- query an element
-local el = document.query({id="mEl",type="button"})
+local el = document.query({id="butt",type="button"})
 el.css("background","blue")
 
 ```
 All methods on the document or elements are chainable for convinience.
 
-example :  `el.attr("disabled",true).css("color","gray")`
+example :  `el.attr("disabled",true).css("color","white")`
 
 ---
 ### Document methods
@@ -36,11 +36,11 @@ head | element | bound to the document head.
 ### Element methods
 Method | Usage
 --- | ---
-add | adds an element to the referer, accepts infinite parameters.
+add | adds elements to the referer, accepts infinite parameters.
 attr | Sets or gets referers attributes, learn [more](./attrncss.md).
 css | Sets or gets referers style, learn [more](./attrncss.md).
 html | Sets or gets referers inner HTML, learn [more](./textnhtml.md).
-off | Removes an event listener from the referer.
+off | Removes event listeners from the referer, accepts infinite parameters.
 on | Adds an event listener to the referer.
 query | Return the first matching child of the referer, learn [more](./queries.md).
 queryAll | Return  matching children of the referer, learn [more](./queries.md).

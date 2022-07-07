@@ -1,15 +1,5 @@
---js native alerts
-function alert(el)app.javascript:alert(el)end
-
---js console
-console={}
-function console.log(...) app.javascript.console:log(...); end
-function console.error(e) app.javascript.console:error(e); end
-function console.warn(e) app.javascript.console:warn(e); end
-
---JSON
-json={}
-function json.parse(e)
+return {
+  parse=function(e)
   local function parse(obj)
     local tab={}
     for key, val in pairs(obj) do 
@@ -21,10 +11,10 @@ function json.parse(e)
   end
   
   return parse(app.javascript.JSON:parse(e))
-end
+end,
 
 
-function json.string(e)
+string=function(e)
   local function convert(tab)
     local obj=app.javascript.JSON:parse("{}")
     for key,val in pairs(tab) do
@@ -36,14 +26,4 @@ function json.string(e)
   
   return app.javascript.JSON:stringify(convert(e))
 end
-
-
---ternary helper
-function turn(c,t,f,d) if c then return t or true else return f or false or d end end
-
-
---fetch function
-function fetch(path,opts)
-  
-  
-end
+}

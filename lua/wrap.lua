@@ -11,7 +11,12 @@ local start=coroutine.wrap(function()
   document.create=app.node
   
   --launch entry script
-  console.log(require(app.manifest.main or "index"))
+  print(require(app.manifest.main or "index"))
+  
+  --remove splash screen
+  app.javascript.document:querySelector("splash"):remove()
+  app.javascript.document:querySelector("#lua-script"):remove()
+  
 
 end)
 --on document load complete

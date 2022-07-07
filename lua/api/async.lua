@@ -1,5 +1,4 @@
-
-function async(func)
+return function(func)
   return function(...)
       local args=...
       local data=nil
