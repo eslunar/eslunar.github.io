@@ -44,12 +44,12 @@ function table._h.iterator(t,func,str)
   local en=1
   
   while en<ln+1 do
-    func(en,t[en])
+    func(en,t[en],en)
     en=en+1
   end
   
   if str then for key,val in pairs(t)do
-    if type(key)~="number" then func(key,val) end
+    if type(key)~="number" then func(key,val,en) en=en+1 end
   end end
 end
 
@@ -83,7 +83,7 @@ function table.clone(a,b)
 end
 
 function table.each(a,b)
-  table._h.iterator(a,function(key,val)b(val,key)end,true)
+  table._h.iterator(a,function(key,val,pos)b(val,key,pos)end,true)
   return a
 end
 
@@ -121,4 +121,19 @@ function table.map(a,b)
   local c={}
   table.each(a,function(val,key)c[key]=b(val,key) or val end)
   return c
+end
+
+function table.fromArray(a)
+  local len,count,tab=a.length,0,{}
+  
+  while count ~= len do
+    tab[count+1]=a[count]
+    count=count+1
+  end
+  return tab
+end
+
+function table.push(tab,val)
+  tab[table.length(tab)+1]=val
+  return tab
 end

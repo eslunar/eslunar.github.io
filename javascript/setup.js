@@ -1,23 +1,35 @@
 /*Used in require modules,parses path to be dynamic*/
-window.parsepath=function(scope,path){
+window.parsepath=function(scope,path,exte){
   if(path.startsWith("//"))path="http:"+path
   else if(/^([a-z]+:\/\/)/i.test(path));
   else path=new URL(path,scope||location.href).href
   let ext=(path.split("/")[path.split("/").length-1||0]||"").includes(".")
-  return ext?path:path+".lua"
+  return ext?path:path+(exte||".lua")
 }
 
+/*typeof userdata*/
+window.typeof=ud=>typeof ud
 
 /*creates an element*/
 window.parseNode=function(str="<div>"){
   let e=document.createElement("div")
   e.innerHTML=str
-  return e.children[0]
+  let x=e.children[0]
+  e.innerHTML=""
+  return x
 }
 
 /*checks if an element has an attr*/
-window.nodeAttr=(el,attr)=>attr in el
-
+window.nodeAttr=(el,attr,val)=>{
+  let x=attr in el?el[attr]:el.getAttribute(attr)
+  val!==undefined?attr in el?el[attr]=val:el.setAttribute(attr,val):""
+  x=x===null?"":x
+  return x }
+window.nodeCSS=(el,css,val)=>{
+  css=css.replace(/\s/g,"-")
+  let x=val!==undefined?el.style[css]=val:el.style[css]
+  x=x===null?"":x
+  return x }
 
 /*creates a fetch request*/
 window.request=async function request(path,cache){
@@ -56,7 +68,8 @@ Object.assign(manifest.packages,{
 })
 
 
-/*load in base lua sceipts*/Promise.all(["entry","require","table","css","document","queries","wrap"].map(e=>`${manifest.src}lua/${e}.lua`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{
+/*load in base lua sceipts*/if(sessionStorage["eslunar.lua"])document.head.innerHTML+=`<script id=lua-script type=application/lua >coroutine.wrap(function() ${sessionStorage["eslunar.lua"]} end)()</script>`;else Promise.all(["entry","require","table","css","document","queries","wrap"].map(e=>`${manifest.src}lua/${e}.lua`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{
+  sessionStorage["eslunar.lua"]=e.join("\n")
   /*compiles lua scripts into single startup*/
   document.head.innerHTML+=`<script id=lua-script type=application/lua >coroutine.wrap(function() ${e.join("\n")} end)()</script>`
 })
