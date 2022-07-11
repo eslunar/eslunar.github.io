@@ -50,18 +50,13 @@ function _query(chd,queer)
         --check if values match strictly--
         local b=val.css(key)==v if not b then pass=false end end end) return pass end)end
   
+  
+  if queer.position=="first" then return {match[1]} end
+  if queer.position=="last"  then return {match[#match]} end
+  if type(queer.position)=="number" then return {match[queer.position]} end
   return match
 end
 
 
 
---[[
-  
-  /*previous and next sibling*/if("sibling" in query)ref=ref.filter(e=>__queer__([e.previousSibling(),e.nextSibling()],query.sibling)[0])
-  
-  
-  if(query.position=="first")ref=[ref[0]
-  if(typeof query.position == "number")ref=[ref[query.position]||ref.pop()]
-  if(query.position=="last")ref=[ref.pop()]
-
-]]
+--previous and next sibling--

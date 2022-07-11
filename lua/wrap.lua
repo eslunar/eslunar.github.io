@@ -16,8 +16,7 @@ local start=coroutine.wrap(function()
   --remove splash screen
   app.javascript.document:querySelector("splash"):remove()
   app.javascript.document:querySelector("#lua-script"):remove()
-  
-
 end)
---on document load complete
-if app.javascript.document.readyState=="complete" then start() else app.javascript.document:addEventListener("load",start) end
+
+
+local function rloop() app.javascript:setTimeout(function() if app.javascript.document.readyState=="complete" then start() else rloop() end end,0) end rloop()

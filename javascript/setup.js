@@ -21,6 +21,7 @@ window.parseNode=function(str="<div>"){
 
 /*checks if an element has an attr*/
 window.nodeAttr=(el,attr,val)=>{
+  
   let x=attr in el?el[attr]:el.getAttribute(attr)
   val!==undefined?attr in el?el[attr]=val:el.setAttribute(attr,val):""
   x=x===null?"":x
@@ -62,6 +63,8 @@ Object.assign(manifest.packages,{
   "console":a("console"),
   "fetch":a("fetch"),
   "json":a("json"),
+  "modal":a("modal"),
+  "page":a("page"),
   "prompt":a("prompt"),
   "ternary":a("ternary"),
   "timer":a("timer")
