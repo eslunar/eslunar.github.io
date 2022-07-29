@@ -3,6 +3,7 @@ let src=document.currentScript.src.split("/")
 src.pop()
 manifest.src=src.join("/")+"/"
 manifest.color=manifest.color||"#0097A7"
+manifest.flags=(manifest.flags||"").split(" ")
 
 /*enable responsive design*/
 let mt=document.createElement("meta")
@@ -38,7 +39,7 @@ let mt=document.createElement("meta")
 
 let splash=document.createElement("splash")
 Object.assign(splash.style,{background:"#00000020",position:"fixed",zIndex:99999,top:0,bottom:0,left:0,right:0,backdropFilter:"blur(3px)",display:"flex",alignItems:"center",justifyContent:"center"})
-splash.innerHTML=`<style>load{width:35px;height:35px;border-radius:100%;border:5px solid ${manifest.color};border-top:5px solid transparent;transform:rotate(0deg);animation:spin 800ms linear infinite;margin:20px auto}@keyframes spin{to{transform:rotate(359deg)}}</style><load></load>`
-document.documentElement.appendChild(splash)
+splash.innerHTML=manifest.splash||`<style>load{width:35px;height:35px;border-radius:100%;border:5px solid ${manifest.color};border-top:5px solid transparent;transform:rotate(0deg);animation:spin 800ms linear infinite;margin:20px auto}@keyframes spin{to{transform:rotate(359deg)}}</style><load></load>`
+manifest.flags.includes("no-splash")?"":document.documentElement.appendChild(splash)
 
-if(sessionStorage["eslunar.js"])setTimeout(sessionStorage["eslunar.js"],0); else Promise.all(["engine","setup"].map(e=>`${manifest.src}javascript/${e}.js`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{sessionStorage["eslunar.js"]=e.join("\n");setTimeout(e.join("\n"),0)})
+if(sessionStorage["eslunar.js"])setTimeout(sessionStorage["eslunar.js"],0); else Promise.all(["engine","setup"].map(e=>`${manifest.src}js/${e}.js`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{sessionStorage["eslunar.js"]=e.join("\n");setTimeout(e.join("\n"),0)})

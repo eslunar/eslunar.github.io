@@ -4,24 +4,24 @@ Use the document table to access the DOM, query elements or create new elements.
 
 ```lua 
 -- access the body and head
-document.head.html("<style>p{color:red}</style>")
-document.body.html("<p> hi there 🤗 </p>")
+document.head:html("<style>p{color:red}</style>")
+document.body:html("<p> hi there 🤗 </p>")
 
 
 -- create an element
-local butt = document.create("<button>press me</button>")
-butt.attr("id","butt")
-butt.on("click",function()alert("hello eslunar!")end)
-document.body.add(butt)
+local butt = document:create("<button>press me</button>")
+butt.attr:id("butt")
+butt:on("click",function()alert("hello eslunar!")end)
+document.body:add(butt)
 
 -- query an element
-local el = document.query({id="butt",type="button"})
-el.css("background","blue")
+local el = document:query({id="butt",type="button"})
+el:css({background="blue"})
 
 ```
 All methods on the document or elements are chainable for convinience.
 
-example :  `el.attr("disabled",true).css("color","white")`
+example :  `el:html(...).css(...)`
 
 ---
 ### Document methods

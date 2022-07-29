@@ -11,8 +11,7 @@ Built with simplicity in mind, eslunar uses [lua](//lua.org) syntax and [javascr
 
 Features:
 - simple module import and exports
-- supports all javascript libraries
-- supports basic lua packages
+- supports JS and lua libraries
 - close interaction with the DOM
 - asynchronous code via coroutines
 - plays nicely with other frameworks, e.g Jquery
@@ -44,7 +43,7 @@ function greet(name)
   print("hello"..name)
 end
 
-greet("eslunar")
+greet(" eslunar") --prints "hello eslunar"
 ```
 
 ---
@@ -56,6 +55,7 @@ greet("eslunar")
 
 ##### UI
 - [Documet](./docs/document.md)
+- [CSS](./docs/css.md)
 - [Queries](./docs/queries.md)
 - [Modals](./docs/modals.md)
 - [Pages](./docs/pages.md)

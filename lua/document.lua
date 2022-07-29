@@ -1,49 +1,55 @@
-function app.node(str,css)
-  local obj={}
+app.nodeClass={} -- node class
+__nodeMeta={__index=app.nodeClass} -- node meta instance
+  -- create a new object --
+function app.nodeClass.create(node,opts)
+  node=node or "<div>"
+  local ins={}
+  -- create html element or bind existing --
+  if type(node)=="string" then ins.raw=app.javascript:parseNode(node)else ins.raw=node.raw or node end
   
-  --set raw reference to element
-  if type(str)=="string" then obj.raw=app.javascript:parseNode(str) else obj.raw=str.raw or str end
-  
+  --set css n attr binds--
+  ins.css=app.cssClass.create(ins)
+  ins.attr=app.attrClass.create(ins)
+  setmetatable(ins,__nodeMeta)
+  return ins
+end
+
   --add children
-  function obj.add(...)table.each({...},function(e)obj.raw:append(e.raw or e)end)return obj end
-  
+  function app.nodeClass:add(...)table.each({...},function(e)self.raw:append(e.value.raw or e.value)end)return self end
   --remove from parent or children
-  function obj.remove(...)obj.raw:remove()return obj end
+  function app.nodeClass:remove(...)self.raw:remove()return self end
   
   --edit attributes
-  function obj.attr(prop,val)if type(prop)=="table" then table.each(prop,function(val,prop)obj.attr(prop,val)end)elseif prop and val then app.javascript:nodeAttr(obj.raw,prop,val) else return app.javascript:nodeAttr(obj.raw,prop) end return obj end
+  function app.nodeClass:attr(prop,val)if type(prop)=="table" then table.each(prop,function(e)self:attr(e.key,e.value)end)elseif prop and val then app.javascript:nodeAttr(self.raw,prop,val) else return app.javascript:nodeAttr(self.raw,prop) end return self end
   
   --edit style
-  function obj.css(prop,val)if type(prop)=="table" then table.each(prop,function(val,prop)obj.css(prop,val)end)elseif prop and val then app.javascript:nodeCSS(obj.raw,prop,val) else return app.javascript:nodeCSS(obj.raw,prop) end return obj end
+  function app.nodeClass:css(prop,val)if type(prop)=="table" then table.each(prop,function(e)self:css(e.key,e.value)end)elseif prop and val then app.javascript:nodeCSS(self.raw,prop,val) else return app.javascript:nodeCSS(self.raw,prop) end return self end
   
   --set get inner HTML
-  function obj.html(...)local a,b,c={...},"",nil if #a~=0 then table.each(a,function(e)b=b..e;end) obj.raw.innerHTML=b return obj else return obj.raw.innerHTML end end
+  function app.nodeClass:html(...)local a,b,c={...},"",nil if #a~=0 then table.each(a,function(e)b=b..e.value;end) self.raw.innerHTML=b return self else return self.raw.innerHTML end end
   
   --set get inner text
-  function obj.text(...)local a,b,c={...},"",nil if #a~=0 then table.each(a,function(e)b=b..e;end) obj.raw.innerText=b return obj else return obj.raw.innerText end end
+  function app.nodeClass:text(...)local a,b,c={...},"",nil if #a~=0 then table.each(a,function(e)b=b..e.value;end) self.raw.innerText=b return self else return self.raw.innerText end end
   
   --add event listener
-  function obj.on(event,func)return obj.attr("on"..event,func)end
+  function app.nodeClass:on(event,func)self.raw:addEventListener(event,function(e,x,y,z)func(x,y,z);end)
+    return self
+    end
   
   
   --get children
-  local function parse(arr)return table.map(table.fromArray(arr),function(e)return document.create(e)end) end
-  function obj.children(deep)if deep then return parse(obj.raw:querySelectorAll("*")) else return parse(obj.raw.children) end end
+  
+  function app.nodeClass:children(deep)local function parse(arr)return table.map(table.fromArray(arr),function(e)return app.nodeClass.create(e.value)end) end;if deep then return parse(self.raw:querySelectorAll("*")) else return parse(self.raw.children) end end
   
   
   --query elements--
-  function obj.query(queer)
-    return _query(obj.children(true),queer or {})[1]
+  function app.nodeClass:query(queer)
+    return _query(self:children(true),queer or {})[1]
   end
   
-  function obj.queryAll(queer)
-      return _query(obj.children(true),queer or {})
+  function app.nodeClass:queryAll(queer)
+      return _query(self:children(true),queer or {})
   end
   
   --parent
-  function obj.parent()if type(obj.raw.parentNode)~="null"  then return document.create(obj.raw.parentNode)else return nil end end
-    
-  --close doc
-  return obj
-end
-
+  function app.nodeClass:parent()if type(self.raw.parentNode)~="null"  then return app.nodeClass.create(self.raw.parentNode)else return nil end end

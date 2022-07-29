@@ -63,6 +63,7 @@ Object.assign(manifest.packages,{
   "console":a("console"),
   "fetch":a("fetch"),
   "json":a("json"),
+  "load":a("load"),
   "modal":a("modal"),
   "page":a("page"),
   "prompt":a("prompt"),
@@ -71,8 +72,8 @@ Object.assign(manifest.packages,{
 })
 
 
-/*load in base lua sceipts*/if(sessionStorage["eslunar.lua"])document.head.innerHTML+=`<script id=lua-script type=application/lua >coroutine.wrap(function() ${sessionStorage["eslunar.lua"]} end)()</script>`;else Promise.all(["entry","require","table","css","document","queries","wrap"].map(e=>`${manifest.src}lua/${e}.lua`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{
+if(sessionStorage["eslunar.lua"])document.head.innerHTML+=`<script id=lua-script type=application/lua >coroutine.wrap(function() ${sessionStorage["eslunar.lua"]} end)()</script>`;else Promise.all(["entry","require","table","json","document","document.ext","queries","css","wrap"].map(e=>`${manifest.src}lua/${e}.lua`).map(e=>fetch(e))).then(e=>Promise.all(e.map(e=>e.text()))).then(e=>{
   sessionStorage["eslunar.lua"]=e.join("\n")
-  /*compiles lua scripts into single startup*/
+  
   document.head.innerHTML+=`<script id=lua-script type=application/lua >coroutine.wrap(function() ${e.join("\n")} end)()</script>`
 })
